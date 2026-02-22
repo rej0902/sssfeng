@@ -106,13 +106,33 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'ArrowRight') { idx = (idx + 1) % gData.length; openLb(); }
   });
 
-  /* ---- Timeline line animation ---- */
-  const timeline = document.querySelector('.timeline');
-  if (timeline) {
-    const tlObs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { timeline.classList.add('animate'); tlObs.unobserve(timeline); } });
+  /* ---- Patent Timeline animations ---- */
+  const tl = document.getElementById('patentTimeline');
+  if (tl) {
+    const tlItems = tl.querySelectorAll('.tl-item');
+
+    // Animate center line when timeline enters viewport
+    const tlLineObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { tl.classList.add('tl-animate'); tlLineObs.unobserve(tl); }
+      });
     }, { threshold: 0.05 });
-    tlObs.observe(timeline);
+    tlLineObs.observe(tl);
+
+    // Staggered reveal for each item
+    const tlItemObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('tl-vis');
+          tlItemObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    tlItems.forEach((item, i) => {
+      item.style.transitionDelay = (i * 0.08) + 's';
+      tlItemObs.observe(item);
+    });
   }
 
   /* ---- Smooth anchor scroll ---- */
