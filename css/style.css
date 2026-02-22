@@ -42,8 +42,8 @@ mark{background:linear-gradient(180deg,transparent 55%,rgba(214,48,49,.15) 55%);
 .nav-container{max-width:1140px;margin:0 auto;padding:0 28px;display:flex;align-items:center;gap:12px}
 .nav-logo{margin-right:auto}
 .nav-logo img{height:36px;transition:.3s}
-/* Logo: on dark hero, show as rounded white badge */
-.navbar:not(.scrolled) .nav-logo img{background:#fff;border-radius:8px;padding:3px 8px}
+/* Logo: on dark hero, brighten for visibility */
+.navbar:not(.scrolled) .nav-logo img{filter:brightness(0) invert(1)}
 .nav-menu{display:flex;gap:2px;list-style:none}
 .nav-link{padding:7px 13px;font-size:.82rem;font-weight:500;border-radius:8px;transition:.25s;color:var(--c-dark3)}
 .navbar:not(.scrolled) .nav-link{color:rgba(255,255,255,.8)}
@@ -267,7 +267,7 @@ mark{background:linear-gradient(180deg,transparent 55%,rgba(214,48,49,.15) 55%);
 /* ---- FOOTER ---- */
 .footer{background:var(--c-dark);color:rgba(255,255,255,.55);padding:48px 0 0}
 .ft-top{display:grid;grid-template-columns:1fr auto 1fr;gap:28px;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.08);align-items:center}
-.ft-logo{height:30px;background:#fff;border-radius:6px;padding:2px 6px;margin-bottom:4px}
+.ft-logo{height:30px;filter:brightness(0) invert(1);margin-bottom:4px}
 .ft-brand span{font-size:.78rem}
 .ft-nav{display:flex;gap:20px}
 .ft-nav a{font-size:.8rem;transition:color .3s}
